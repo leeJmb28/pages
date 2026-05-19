@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 H1 OKR — 技術中心 &amp; 產品團隊</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dk-bg:#0F1923;--dk-surface:#1A2633;--dk-surface2:#223040;
+  --dk-border:#2D3F52;--dk-border2:#3A5068;
+  --dk-text:#E8EDF2;--dk-muted:#8FA3B8;
+  --dk-p0:#E24B4A;--dk-p0bg:#2A1515;
+  --dk-p1:#EF9F27;--dk-p1bg:#271A08;
+  --dk-tech:#378ADD;--dk-techbg:#0C2A42;
+  --dk-prod:#1D9E75;--dk-prodbg:#0A2820;
+  --dk-teal:#0D9488;--dk-blue:#378ADD;
+  --dk-now-bg:#0D2518;--dk-now-fg:#5DCAA5;
+  --dk-next-bg:#0C2A42;--dk-next-fg:#85B7EB;
+  --dk-later-bg:#1C1C1C;--dk-later-fg:#888780;
+  --border-radius-md:8px;--border-radius-lg:12px;
+  --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+body{background:var(--dk-bg);min-height:100vh;display:flex;justify-content:center;padding:2rem 1rem;font-family:var(--font-sans)}
+.wrap{background:var(--dk-bg);padding:1.5rem;width:100%;max-width:860px}
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:0 0 1rem;border-bottom:0.5px solid var(--dk-border);margin-bottom:1.5rem}
+.top-title{font-size:18px;font-weight:500;color:var(--dk-text)}
+.top-meta{font-size:12px;color:var(--dk-muted)}
+.summary-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.metric{background:var(--dk-surface);border-radius:var(--border-radius-md);padding:0.875rem;text-align:center;border:0.5px solid var(--dk-border)}
+.metric-label{font-size:11px;color:var(--dk-muted);margin-bottom:4px}
+.metric-value{font-size:22px;font-weight:500;color:var(--dk-text)}
+.filters{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+.filter-btn{font-size:12px;padding:5px 13px;border-radius:var(--border-radius-md);border:0.5px solid var(--dk-border);background:transparent;color:var(--dk-muted);cursor:pointer;transition:all 0.15s}
+.filter-btn.active{background:var(--dk-surface2);color:var(--dk-text);border-color:var(--dk-border2)}
+.okr-list{display:flex;flex-direction:column;gap:10px}
+.okr-card{background:var(--dk-surface);border:0.5px solid var(--dk-border);border-radius:var(--border-radius-lg);overflow:hidden;transition:border-color 0.15s}
+.okr-card:hover{border-color:var(--dk-border2)}
+.okr-card.p0-card{border-left:2px solid var(--dk-p0)}
+.okr-card.p1-card{border-left:2px solid var(--dk-p1)}
+.okr-header{display:flex;align-items:flex-start;gap:12px;padding:1rem 1.25rem;cursor:pointer;user-select:none}
+.okr-icon{width:36px;height:36px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.okr-meta{flex:1;min-width:0}
+.okr-title-row{display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap}
+.okr-title{font-size:14px;font-weight:500;color:var(--dk-text)}
+.badge{font-size:11px;padding:2px 8px;border-radius:var(--border-radius-md)}
+.badge-tech{background:var(--dk-techbg);color:var(--dk-tech)}
+.badge-prod{background:var(--dk-prodbg);color:var(--dk-prod)}
+.badge-p0{background:var(--dk-p0bg);color:var(--dk-p0)}
+.badge-p1{background:var(--dk-p1bg);color:var(--dk-p1)}
+.okr-desc{font-size:12px;color:var(--dk-muted);line-height:1.5}
+.okr-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.owner-chip{font-size:11px;color:var(--dk-muted);display:flex;align-items:center;gap:4px}
+.expand-icon{font-size:15px;color:var(--dk-muted);transition:transform 0.2s}
+.expanded .expand-icon{transform:rotate(180deg)}
+.okr-body{display:none;padding:0 1.25rem 1.25rem;border-top:0.5px solid var(--dk-border)}
+.okr-body.open{display:block}
+.section-label{font-size:10px;font-weight:500;color:var(--dk-muted);margin:1rem 0 6px;text-transform:uppercase;letter-spacing:0.06em}
+.kr-list{display:flex;flex-direction:column;gap:6px}
+.kr-item{display:flex;align-items:center;gap:10px;font-size:12px;background:var(--dk-surface2);border-radius:var(--border-radius-md);padding:8px 10px}
+.kr-num{font-size:10px;font-weight:500;color:var(--dk-blue);min-width:24px}
+.kr-text{flex:1;color:var(--dk-text);line-height:1.5}
+.kr-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.kr-bar-bg{width:72px;height:4px;background:var(--dk-border);border-radius:2px;overflow:hidden}
+.kr-bar{height:100%;border-radius:2px;background:var(--dk-blue);transition:width 0.4s}
+.kr-pct{font-size:10px;color:var(--dk-muted)}
+.kr-tbd{font-size:10px;color:var(--dk-muted);font-style:italic}
+.tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.tier-card{background:var(--dk-surface2);border:0.5px solid var(--dk-border);border-radius:var(--border-radius-md);padding:10px}
+.tier-name{font-size:12px;font-weight:500;color:var(--dk-text);margin-bottom:5px;text-align:center}
+.tier-stat{font-size:10px;color:var(--dk-muted);line-height:1.6;text-align:center}
+.tier-revenue{font-size:11px;font-weight:500;color:var(--dk-teal);margin-top:4px;text-align:center}
+.nnl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.nnl-col{border-radius:var(--border-radius-md);overflow:hidden}
+.nnl-header{font-size:11px;font-weight:500;padding:6px 10px;text-align:center}
+.nnl-body{padding:8px 10px;min-height:60px}
+.nnl-item{font-size:11px;color:var(--dk-text);padding:3px 0;border-bottom:0.5px solid var(--dk-border);line-height:1.4;display:flex;gap:6px;align-items:flex-start}
+.nnl-item:last-child{border-bottom:none}
+.nnl-bullet{color:var(--dk-muted);flex-shrink:0;margin-top:1px}
+.nnl-cond{font-size:10px;color:var(--dk-muted);font-style:italic;padding-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <div>
+      <div class="top-title">2026 H1 — 技術中心 &amp; 產品團隊 OKR</div>
+      <div class="top-meta" style="margin-top:3px">策略會議共識 → 行動方案</div>
+    </div>
+    <div class="top-meta">最後更新：2026/05/19</div>
+  </div>
+  <div class="summary-row">
+    <div class="metric"><div class="metric-label">目標數</div><div class="metric-value">4</div></div>
+    <div class="metric"><div class="metric-label">負責單位</div><div class="metric-value">2</div></div>
+    <div class="metric"><div class="metric-label">P0 目標</div><div class="metric-value" style="color:var(--dk-p0)">2</div></div>
+    <div class="metric"><div class="metric-label">P1 目標</div><div class="metric-value" style="color:var(--dk-p1)">2</div></div>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards('all',this)">全部</button>
+    <button class="filter-btn" onclick="filterCards('tech',this)">技術中心</button>
+    <button class="filter-btn" onclick="filterCards('product',this)">產品團隊</button>
+    <button class="filter-btn" onclick="filterCards('p0',this)">P0</button>
+    <button class="filter-btn" onclick="filterCards('p1',this)">P1</button>
+  </div>
+  <div class="okr-list" id="okr-list"></div>
+</div>
+
+<script>
+const okrData=[
+  {team:'product',priority:'p0',icon:'ti-currency-dollar',iconBg:'#0A2820',iconColor:'#1D9E75',
+   title:'訂閱會員月收入 NTD 300 萬',
+   desc:'推出 $119 / $990 兩個新 tier，配合現有 $330 方案，以 10萬 MAU 為基礎達成月收入 300 萬目標',
+   owner:'產品團隊',
+   krs:[
+     {t:'訂閱月收入從 NT$135 萬成長至 NT$300 萬',p:45},
+     {t:'$119 方案上線，付費率達 2%（目標 ARPPU $178）',p:0},
+     {t:'$990 方案上線，付費率達 0.5%（目標 ARPPU $419）',p:0},
+     {t:'$330 方案付費率維持 / 提升至 3%（目標 ARPPU $485）',p:50,label:'進行中'},
+   ],
+   tiers:[
+     {name:'$119 / 月',stats:'付費率 2% → 2,000 人',arppu:'ARPPU $178',rev:'預估 $356K / 月'},
+     {name:'$330 / 月',stats:'付費率 3% → 3,000 人',arppu:'ARPPU $485',rev:'預估 $1,455K / 月'},
+     {name:'$990 / 月',stats:'付費率 0.5% → 500 人',arppu:'ARPPU $419',rev:'預估 $210K / 月'},
+   ],
+   now:['$330 方案運行中','3 / 6 / 12 個月年繳已上線','分析現有訂閱轉換漏斗'],
+   next:['與營運 / 行銷協調各 tier 功能差異','推出 $119 入門 tier','推出 $990 高階 tier','主播動態貼文家族分級機制'],
+   later:['主播專屬訂閱機制'],laterCond:'條件：家族分級轉換率達標後啟動'},
+  {team:'tech',priority:'p1',icon:'ti-world',iconBg:'#0C2A42',iconColor:'#378ADD',
+   title:'Web 版本優化，承接社群分享第一波流量',
+   desc:'依不同分享連結類型提供對應頁面，以註冊、開啟 App、進房、互動與付費轉換為核心指標',
+   owner:'技術中心',
+   krs:[
+     {t:'所有主要分享連結類型（主播頁、直播間、動態）均有對應 landing page，跳出率 &lt; TBD%',tbd:true},
+     {t:'社群流量來源的 App 開啟 / 下載轉換率達 TBD%',tbd:true},
+   ],
+   now:['主播個人頁 / 直播間 / 動態詳情頁已上線','盤點各頁面 CTA 現況','盤點現行 onelink 連結種類及規則'],
+   next:['lang.live 作為短網址入口，轉導 onelink','補齊缺漏的分享連結對應頁','各頁面加入／優化 CTA（下載、註冊、進房）'],
+   later:['串接 GA / 埋點，建立轉換漏斗追蹤','依來源 / 裝置個人化 landing 內容','Web 端付費流程優化']},
+  {team:'tech',priority:'p0',icon:'ti-mood-smile',iconBg:'#1A1030',iconColor:'#7F77DD',
+   title:'AI Avatar 虛擬形象系統上線',
+   desc:'打造主播與用戶的虛擬身份，創造尊榮展示場景與服裝道具付費生態，目標 Avatar 月收入 NT$300 萬',
+   owner:'技術中心',
+   krs:[
+     {t:'Avatar 功能 MAU 達 5,000 人（10萬 MAU 的 5% 滲透率）',p:0},
+     {t:'服裝道具付費用戶數達 TBD（驗證付費意願）',tbd:true,label:'後補'},
+     {t:'Avatar 相關月收入達 NT$300 萬',p:0},
+   ],
+   now:['確定 Avatar 技術選型（2D / 3D / Live2D）','定義最小形象規格與展示場景','評估外部素材 / 自製設計成本'],
+   next:['Avatar 建立流程上線（用戶可建立形象）','直播間 Avatar 展示場景','服裝道具商城 MVP'],
+   later:['與營運 &amp; 行銷討論限定 / 稀缺服裝活動機制','Avatar 養成互動元素','主播專屬 Avatar 周邊']},
+  {team:'tech',priority:'p1',icon:'ti-robot',iconBg:'#0F1A2A',iconColor:'#85B7EB',
+   title:'AI 助理主播 PoC',
+   desc:'驗證「24 小時情感延伸助理」技術可行性，AI 作為主播延伸而非替代者，延長陪伴時間與經營效率',
+   owner:'技術中心',
+   krs:[{t:'完成 AI 助理主播 PoC，至少 1 位主播實際上線驗證',p:0}],
+   now:['定義 PoC 範疇與成功標準','評估 LLM + TTS 技術選型','與經紀招募意願主播參與 pilot'],
+   next:['建立 AI 人格訓練框架（主播風格複製）','完成第一位主播 AI 助理上線','蒐集主播與觀眾反饋'],
+   later:['擴大至 30 位主播','AI 助理訂閱工具商業化'],laterCond:'條件：PoC 驗證通過後啟動'},
+];
+
+function buildCard(o){
+  const teamBadge=o.team==='tech'?'<span class="badge badge-tech">技術中心</span>':'<span class="badge badge-prod">產品團隊</span>';
+  const priBadge=o.priority==='p0'?'<span class="badge badge-p0">P0</span>':'<span class="badge badge-p1">P1</span>';
+  const krHtml=o.krs.map((k,i)=>`
+    <div class="kr-item">
+      <span class="kr-num">KR${i+1}</span>
+      <span class="kr-text">${k.t}</span>
+      <div class="kr-right">${k.tbd
+        ?`<span class="kr-tbd">${k.label||'待補 baseline'}</span>`
+        :`<div class="kr-bar-bg"><div class="kr-bar" style="width:${k.p}%"></div></div><span class="kr-pct">${k.label||(k.p+'%')}</span>`
+      }</div>
+    </div>`).join('');
+  const tierHtml=o.tiers?`
+    <div class="section-label">收入模型假設（基於 10萬 MAU）</div>
+    <div class="tier-row">${o.tiers.map(t=>`
+      <div class="tier-card">
+        <div class="tier-name">${t.name}</div>
+        <div class="tier-stat">${t.stats}</div>
+        <div class="tier-stat">${t.arppu}</div>
+        <div class="tier-revenue">${t.rev}</div>
+      </div>`).join('')}</div>`:'';
+  const nnlCol=(label,bg,fg,items,cond)=>`
+    <div class="nnl-col" style="background:${bg}">
+      <div class="nnl-header" style="color:${fg};border-bottom:0.5px solid var(--dk-border)">${label}</div>
+      <div class="nnl-body">
+        ${items.map(t=>`<div class="nnl-item"><span class="nnl-bullet">·</span><span>${t}</span></div>`).join('')}
+        ${cond?`<div class="nnl-cond">${cond}</div>`:''}
+      </div>
+    </div>`;
+  const el=document.createElement('div');
+  el.className=`okr-card ${o.priority}-card`;
+  el.dataset.team=o.team;
+  el.dataset.priority=o.priority;
+  el.innerHTML=`
+    <div class="okr-header" onclick="toggleCard(this)">
+      <div class="okr-icon" style="background:${o.iconBg}">
+        <i class="ti ${o.icon}" style="color:${o.iconColor};font-size:17px" aria-hidden="true"></i>
+      </div>
+      <div class="okr-meta">
+        <div class="okr-title-row"><span class="okr-title">${o.title}</span>${teamBadge}${priBadge}</div>
+        <div class="okr-desc">${o.desc}</div>
+      </div>
+      <div class="okr-right">
+        <span class="owner-chip"><i class="ti ti-user" aria-hidden="true"></i>${o.owner}</span>
+        <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="okr-body">
+      <div class="section-label">關鍵結果 KR</div>
+      <div class="kr-list">${krHtml}</div>
+      ${tierHtml}
+      <div class="section-label" style="margin-top:1rem">行動計畫</div>
+      <div class="nnl">
+        ${nnlCol('Now','var(--dk-now-bg)','var(--dk-now-fg)',o.now||[])}
+        ${nnlCol('Next','var(--dk-next-bg)','var(--dk-next-fg)',o.next||[])}
+        ${nnlCol('Later','var(--dk-later-bg)','var(--dk-later-fg)',o.later||[],o.laterCond)}
+      </div>
+    </div>`;
+  return el;
+}
+
+function render(){const l=document.getElementById('okr-list');l.innerHTML='';okrData.forEach(o=>l.appendChild(buildCard(o)));}
+function toggleCard(h){const c=h.closest('.okr-card');c.querySelector('.okr-body').classList.toggle('open');c.classList.toggle('expanded');}
+function filterCards(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.okr-card').forEach(c=>{
+    if(type==='all')c.style.display='';
+    else if(type==='p0'||type==='p1')c.style.display=c.dataset.priority===type?'':'none';
+    else c.style.display=c.dataset.team===type?'':'none';
+  });
+}
+render();
+</script>
+</body>
+</html>
