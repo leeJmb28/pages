@@ -8,93 +8,129 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --dk-bg:#0F1923;--dk-surface:#1A2633;--dk-surface2:#223040;
-  --dk-border:#2D3F52;--dk-border2:#3A5068;
-  --dk-text:#E8EDF2;--dk-muted:#8FA3B8;
-  --dk-p0:#E24B4A;--dk-p0bg:#2A1515;
-  --dk-p1:#EF9F27;--dk-p1bg:#271A08;
-  --dk-tech:#378ADD;--dk-techbg:#0C2A42;
-  --dk-prod:#1D9E75;--dk-prodbg:#0A2820;
-  --dk-teal:#0D9488;--dk-blue:#378ADD;
-  --dk-now-bg:#0D2518;--dk-now-fg:#5DCAA5;
-  --dk-next-bg:#0C2A42;--dk-next-fg:#85B7EB;
-  --dk-later-bg:#1C1C1C;--dk-later-fg:#888780;
-  --border-radius-md:8px;--border-radius-lg:12px;
+  --sp-green:#1DB954;--sp-green-dark:#157a38;--sp-green-light:#e6f9ed;
+  --sp-bg:#F6F6F4;--sp-surface:#FFFFFF;--sp-surface2:#F0F0EE;
+  --sp-border:#E0DFDB;--sp-border2:#C8C7C2;
+  --sp-text:#121212;--sp-muted:#6B6B6B;
+  --sp-p0:#E24B4A;--sp-p0bg:#FCEBEB;
+  --sp-p1:#BA7517;--sp-p1bg:#FAEEDA;
+  --sp-tech:#185FA5;--sp-techbg:#E6F1FB;
+  --sp-prod:#157a38;--sp-prodbg:#e6f9ed;
+  --sp-now-bg:#e6f9ed;--sp-now-fg:#157a38;
+  --sp-next-bg:#E6F1FB;--sp-next-fg:#185FA5;
+  --sp-later-bg:#F1EFE8;--sp-later-fg:#5F5E5A;
+  --radius-md:6px;--radius-lg:10px;
   --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
-body{background:var(--dk-bg);min-height:100vh;display:flex;justify-content:center;padding:2rem 1rem;font-family:var(--font-sans)}
-.wrap{background:var(--dk-bg);padding:1.5rem;width:100%;max-width:860px}
-.top-bar{display:flex;align-items:center;justify-content:space-between;padding:0 0 1rem;border-bottom:0.5px solid var(--dk-border);margin-bottom:1.5rem}
-.top-title{font-size:18px;font-weight:500;color:var(--dk-text)}
-.top-meta{font-size:12px;color:var(--dk-muted)}
+body{background:var(--sp-bg);min-height:100vh;display:flex;justify-content:center;padding:2rem 1rem;font-family:var(--font-sans)}
+.wrap{background:var(--sp-bg);padding:1.5rem;width:100%;max-width:860px}
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:0 0 1rem;border-bottom:1px solid var(--sp-border);margin-bottom:1.5rem}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--sp-green);display:inline-block;margin-right:8px;flex-shrink:0}
+.top-title{font-size:18px;font-weight:600;color:var(--sp-text);display:flex;align-items:center}
+.top-meta{font-size:12px;color:var(--sp-muted)}
 .summary-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
-.metric{background:var(--dk-surface);border-radius:var(--border-radius-md);padding:0.875rem;text-align:center;border:0.5px solid var(--dk-border)}
-.metric-label{font-size:11px;color:var(--dk-muted);margin-bottom:4px}
-.metric-value{font-size:22px;font-weight:500;color:var(--dk-text)}
+.metric{background:var(--sp-surface);border-radius:var(--radius-md);padding:.875rem;text-align:center;border:1px solid var(--sp-border)}
+.metric-label{font-size:11px;color:var(--sp-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.metric-value{font-size:22px;font-weight:600;color:var(--sp-text)}
 .filters{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
-.filter-btn{font-size:12px;padding:5px 13px;border-radius:var(--border-radius-md);border:0.5px solid var(--dk-border);background:transparent;color:var(--dk-muted);cursor:pointer;transition:all 0.15s}
-.filter-btn.active{background:var(--dk-surface2);color:var(--dk-text);border-color:var(--dk-border2)}
+.filter-btn{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid var(--sp-border);background:var(--sp-surface);color:var(--sp-muted);cursor:pointer;transition:all .15s;font-weight:500}
+.filter-btn:hover{border-color:var(--sp-border2);color:var(--sp-text)}
+.filter-btn.active{background:var(--sp-green);color:#fff;border-color:var(--sp-green);font-weight:600}
 .okr-list{display:flex;flex-direction:column;gap:10px}
-.okr-card{background:var(--dk-surface);border:0.5px solid var(--dk-border);border-radius:var(--border-radius-lg);overflow:hidden;transition:border-color 0.15s}
-.okr-card:hover{border-color:var(--dk-border2)}
-.okr-card.p0-card{border-left:2px solid var(--dk-p0)}
-.okr-card.p1-card{border-left:2px solid var(--dk-p1)}
+.okr-card{background:var(--sp-surface);border:1px solid var(--sp-border);border-radius:var(--radius-lg);overflow:hidden;transition:box-shadow .15s,border-color .15s}
+.okr-card:hover{border-color:var(--sp-border2);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.okr-card.p0-card{border-left:3px solid var(--sp-p0)}
+.okr-card.p1-card{border-left:3px solid var(--sp-p1)}
 .okr-header{display:flex;align-items:flex-start;gap:12px;padding:1rem 1.25rem;cursor:pointer;user-select:none}
-.okr-icon{width:36px;height:36px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.okr-icon{width:36px;height:36px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .okr-meta{flex:1;min-width:0}
 .okr-title-row{display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap}
-.okr-title{font-size:14px;font-weight:500;color:var(--dk-text)}
-.badge{font-size:11px;padding:2px 8px;border-radius:var(--border-radius-md)}
-.badge-tech{background:var(--dk-techbg);color:var(--dk-tech)}
-.badge-prod{background:var(--dk-prodbg);color:var(--dk-prod)}
-.badge-p0{background:var(--dk-p0bg);color:var(--dk-p0)}
-.badge-p1{background:var(--dk-p1bg);color:var(--dk-p1)}
-.okr-desc{font-size:12px;color:var(--dk-muted);line-height:1.5}
+.okr-title{font-size:14px;font-weight:600;color:var(--sp-text)}
+.badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500}
+.badge-tech{background:var(--sp-techbg);color:var(--sp-tech)}
+.badge-prod{background:var(--sp-prodbg);color:var(--sp-prod)}
+.badge-p0{background:var(--sp-p0bg);color:var(--sp-p0)}
+.badge-p1{background:var(--sp-p1bg);color:var(--sp-p1)}
+.okr-desc{font-size:12px;color:var(--sp-muted);line-height:1.5}
 .okr-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.owner-chip{font-size:11px;color:var(--dk-muted);display:flex;align-items:center;gap:4px}
-.expand-icon{font-size:15px;color:var(--dk-muted);transition:transform 0.2s}
+.owner-chip{font-size:11px;color:var(--sp-muted);display:flex;align-items:center;gap:4px}
+.expand-icon{font-size:15px;color:var(--sp-muted);transition:transform .2s}
 .expanded .expand-icon{transform:rotate(180deg)}
-.okr-body{display:none;padding:0 1.25rem 1.25rem;border-top:0.5px solid var(--dk-border)}
+.okr-body{display:none;padding:0 1.25rem 1.25rem;border-top:1px solid var(--sp-border)}
 .okr-body.open{display:block}
-.section-label{font-size:10px;font-weight:500;color:var(--dk-muted);margin:1rem 0 6px;text-transform:uppercase;letter-spacing:0.06em}
+.section-label{font-size:10px;font-weight:600;color:var(--sp-muted);margin:1rem 0 6px;text-transform:uppercase;letter-spacing:.08em}
 .kr-list{display:flex;flex-direction:column;gap:6px}
-.kr-item{display:flex;align-items:center;gap:10px;font-size:12px;background:var(--dk-surface2);border-radius:var(--border-radius-md);padding:8px 10px}
-.kr-num{font-size:10px;font-weight:500;color:var(--dk-blue);min-width:24px}
-.kr-text{flex:1;color:var(--dk-text);line-height:1.5}
-.kr-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
-.kr-bar-bg{width:72px;height:4px;background:var(--dk-border);border-radius:2px;overflow:hidden}
-.kr-bar{height:100%;border-radius:2px;background:var(--dk-blue);transition:width 0.4s}
-.kr-pct{font-size:10px;color:var(--dk-muted)}
-.kr-tbd{font-size:10px;color:var(--dk-muted);font-style:italic}
+.kr-item{display:flex;align-items:center;gap:10px;font-size:12px;background:var(--sp-surface2);border-radius:var(--radius-md);padding:8px 10px;cursor:pointer;transition:background .15s}
+.kr-item:hover{background:#e6f9ed}
+.kr-item:hover .kr-wbs-hint{opacity:1}
+.kr-num{font-size:10px;font-weight:600;color:var(--sp-green-dark);min-width:24px}
+.kr-text{flex:1;color:var(--sp-text);line-height:1.5}
+.kr-wbs-hint{font-size:10px;color:var(--sp-green-dark);opacity:0;transition:opacity .15s;white-space:nowrap;margin-right:4px}
+.kr-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.kr-prog-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.kr-bar-bg{width:72px;height:4px;background:var(--sp-border);border-radius:2px;overflow:hidden}
+.kr-bar{height:100%;border-radius:2px;background:var(--sp-green);transition:width .4s}
+.kr-pct{font-size:10px;color:var(--sp-muted)}
+.kr-tbd{font-size:10px;color:var(--sp-muted);font-style:italic}
 .tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
-.tier-card{background:var(--dk-surface2);border:0.5px solid var(--dk-border);border-radius:var(--border-radius-md);padding:10px}
-.tier-name{font-size:12px;font-weight:500;color:var(--dk-text);margin-bottom:5px;text-align:center}
-.tier-stat{font-size:10px;color:var(--dk-muted);line-height:1.6;text-align:center}
-.tier-revenue{font-size:11px;font-weight:500;color:var(--dk-teal);margin-top:4px;text-align:center}
+.tier-card{background:var(--sp-surface2);border:1px solid var(--sp-border);border-radius:var(--radius-md);padding:10px}
+.tier-name{font-size:12px;font-weight:600;color:var(--sp-text);margin-bottom:5px;text-align:center}
+.tier-stat{font-size:10px;color:var(--sp-muted);line-height:1.6;text-align:center}
+.tier-revenue{font-size:11px;font-weight:600;color:var(--sp-green-dark);margin-top:4px;text-align:center}
 .nnl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
-.nnl-col{border-radius:var(--border-radius-md);overflow:hidden}
-.nnl-header{font-size:11px;font-weight:500;padding:6px 10px;text-align:center}
+.nnl-col{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--sp-border)}
+.nnl-header{font-size:11px;font-weight:600;padding:6px 10px;text-align:center;border-bottom:1px solid var(--sp-border)}
 .nnl-body{padding:8px 10px;min-height:60px}
-.nnl-item{font-size:11px;color:var(--dk-text);padding:3px 0;border-bottom:0.5px solid var(--dk-border);line-height:1.4;display:flex;gap:6px;align-items:flex-start}
+.nnl-item{font-size:11px;color:var(--sp-text);padding:3px 0;border-bottom:1px solid var(--sp-border);line-height:1.4;display:flex;gap:6px;align-items:flex-start}
 .nnl-item:last-child{border-bottom:none}
-.nnl-bullet{color:var(--dk-muted);flex-shrink:0;margin-top:1px}
-.nnl-cond{font-size:10px;color:var(--dk-muted);font-style:italic;padding-top:4px}
+.nnl-bullet{color:var(--sp-green);flex-shrink:0;font-weight:700}
+.nnl-cond{font-size:10px;color:var(--sp-muted);font-style:italic;padding-top:4px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:1000;padding:1rem;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.show{opacity:1;pointer-events:all}
+.modal{background:var(--sp-surface);border-radius:var(--radius-lg);width:100%;max-width:680px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:1.25rem 1.25rem 1rem;border-bottom:1px solid var(--sp-border)}
+.modal-head-left{display:flex;align-items:center;gap:10px}
+.modal-kr-badge{background:var(--sp-green-light);color:var(--sp-green-dark);font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;flex-shrink:0}
+.modal-title{font-size:14px;font-weight:600;color:var(--sp-text);line-height:1.4}
+.modal-close{background:none;border:none;font-size:20px;color:var(--sp-muted);cursor:pointer;padding:2px;flex-shrink:0;line-height:1}
+.modal-close:hover{color:var(--sp-text)}
+.modal-body{overflow-y:auto;padding:1.25rem}
+.modal-section-label{font-size:10px;font-weight:600;color:var(--sp-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.wp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.wp-card{background:var(--sp-surface2);border:1px solid var(--sp-border);border-radius:var(--radius-md);padding:10px 12px}
+.wp-id{font-size:10px;font-weight:600;color:var(--sp-green-dark);margin-bottom:3px}
+.wp-title{font-size:12px;font-weight:500;color:var(--sp-text);margin-bottom:6px;line-height:1.4}
+.wp-meta{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 6px;border-radius:4px;border:.5px solid var(--sp-border);color:var(--sp-muted)}
+.o-prod{background:#e6f9ed;color:#157a38;border-color:#9de0b4}
+.o-tech{background:#E6F1FB;color:#185FA5;border-color:#85B7EB}
+.o-ops{background:#FAEEDA;color:#854F0B;border-color:#FAC775}
+.o-design{background:#EEEDFE;color:#534AB7;border-color:#AFA9EC}
+.o-bd{background:#FBEAF0;color:#993556;border-color:#ED93B1}
+.t-dev{background:#EEEDFE;color:#534AB7;border-color:#AFA9EC}
+.t-biz{background:#FBEAF0;color:#993556;border-color:#ED93B1}
+.t-data{background:#EAF3DE;color:#3B6D11;border-color:#C0DD97}
+.t-design{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+.t-research{background:#FEF3C7;color:#854F0B;border-color:#FAC775}
+.dep-tag{background:var(--sp-surface);color:var(--sp-muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top-bar">
     <div>
-      <div class="top-title">2026 H1 — 技術中心 &amp; 產品團隊 OKR</div>
-      <div class="top-meta" style="margin-top:3px">策略會議共識 → 行動方案</div>
+      <div class="top-title"><span class="logo-dot"></span>2026 H1 — 技術中心 &amp; 產品團隊 OKR</div>
+      <div class="top-meta" style="margin-top:3px;padding-left:18px">策略會議共識 → 行動方案　　點擊 KR 查看工作包</div>
     </div>
     <div class="top-meta">最後更新：2026/05/19</div>
   </div>
   <div class="summary-row">
     <div class="metric"><div class="metric-label">目標數</div><div class="metric-value">4</div></div>
     <div class="metric"><div class="metric-label">負責單位</div><div class="metric-value">2</div></div>
-    <div class="metric"><div class="metric-label">P0 目標</div><div class="metric-value" style="color:var(--dk-p0)">2</div></div>
-    <div class="metric"><div class="metric-label">P1 目標</div><div class="metric-value" style="color:var(--dk-p1)">2</div></div>
+    <div class="metric"><div class="metric-label">P0 目標</div><div class="metric-value" style="color:var(--sp-p0)">2</div></div>
+    <div class="metric"><div class="metric-label">P1 目標</div><div class="metric-value" style="color:var(--sp-p1)">2</div></div>
   </div>
   <div class="filters">
     <button class="filter-btn active" onclick="filterCards('all',this)">全部</button>
@@ -106,9 +142,95 @@ body{background:var(--dk-bg);min-height:100vh;display:flex;justify-content:cente
   <div class="okr-list" id="okr-list"></div>
 </div>
 
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <span class="modal-kr-badge" id="modal-kr-badge">KR1</span>
+        <span class="modal-title" id="modal-title"></span>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()" aria-label="關閉">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">對應工作包 Work Packages</div>
+      <div class="wp-grid" id="modal-wp-grid"></div>
+    </div>
+  </div>
+</div>
+
 <script>
+const wbsData={
+  'O1KR1':{label:'訂閱月收入從 NT$135 萬成長至 NT$300 萬',wps:[
+    {id:'1.1',title:'訂閱轉換漏斗分析',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:''},
+    {id:'1.2',title:'訂閱收入儀表板建立',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.1'},
+    {id:'1.3',title:'年繳方案效益追蹤',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:''},
+  ]},
+  'O1KR2':{label:'$119 方案上線，付費率 2%，ARPPU $178',wps:[
+    {id:'2.1',title:'$119 tier 功能規格定義',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:''},
+    {id:'2.2',title:'與營運 / 行銷協調功能差異',owner:'o-ops',ol:'營運',type:'t-biz',tl:'協調',dep:'2.1'},
+    {id:'2.3',title:'前端訂閱方案 UI 開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'2.1'},
+    {id:'2.4',title:'後端訂閱 tier 邏輯開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'2.1'},
+    {id:'2.5',title:'$119 方案上線 & 驗收測試',owner:'o-prod',ol:'產品',type:'t-dev',tl:'測試',dep:'2.3 2.4'},
+  ]},
+  'O1KR3':{label:'$990 方案上線，付費率 0.5%，ARPPU $419',wps:[
+    {id:'3.1',title:'$990 高階 tier 功能規格定義',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:''},
+    {id:'3.2',title:'高階 tier 專屬功能開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'3.1'},
+    {id:'3.3',title:'$990 方案上線 & 驗收測試',owner:'o-prod',ol:'產品',type:'t-dev',tl:'測試',dep:'3.2'},
+  ]},
+  'O1KR4':{label:'$330 方案付費率維持 / 提升至 3%，ARPPU $485',wps:[
+    {id:'4.1',title:'主播動態貼文家族分級設計',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:''},
+    {id:'4.2',title:'家族分級後端邏輯開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'4.1'},
+    {id:'4.3',title:'家族分級轉換率追蹤 & 評估',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:'4.2'},
+  ]},
+  'O2KR1':{label:'所有主要分享連結類型均有對應 landing page，跳出率 < TBD%',wps:[
+    {id:'1.1',title:'盤點現行 onelink 連結種類及規則',owner:'o-tech',ol:'技術',type:'t-data',tl:'盤點',dep:''},
+    {id:'1.2',title:'盤點各頁面 CTA 現況',owner:'o-prod',ol:'產品',type:'t-data',tl:'盤點',dep:''},
+    {id:'1.3',title:'缺漏頁面清單確認與排優先級',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:'1.1 1.2'},
+    {id:'1.4',title:'lang.live 短網址轉導 onelink 開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.1'},
+    {id:'1.5',title:'補齊缺漏分享連結對應頁開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.3'},
+    {id:'1.6',title:'各頁面 CTA 加入 / 優化',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.2'},
+  ]},
+  'O2KR2':{label:'社群流量來源 App 開啟 / 下載轉換率達 TBD%',wps:[
+    {id:'2.1',title:'GA / 埋點串接，建立轉換漏斗追蹤',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.5 1.6'},
+    {id:'2.2',title:'Baseline 數據蒐集（2 週）',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:'2.1'},
+    {id:'2.3',title:'KR 目標值設定（依 baseline）',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:'2.2'},
+    {id:'2.4',title:'依來源 / 裝置個人化 landing 內容',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'2.2'},
+  ]},
+  'O3KR1':{label:'Avatar 功能 MAU 達 5,000 人（5% 滲透率）',wps:[
+    {id:'1.1',title:'Avatar 技術選型評估（2D / 3D / Live2D）',owner:'o-tech',ol:'技術',type:'t-research',tl:'研究',dep:''},
+    {id:'1.2',title:'最小形象規格與展示場景定義',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:'1.1'},
+    {id:'1.3',title:'Avatar 建立流程 UI / UX 設計',owner:'o-design',ol:'設計',type:'t-design',tl:'設計',dep:'1.2'},
+    {id:'1.4',title:'Avatar 建立流程前端開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.3'},
+    {id:'1.5',title:'Avatar 後端資料模型與 API',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.2'},
+    {id:'1.6',title:'直播間 Avatar 展示場景整合',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.4 1.5'},
+  ]},
+  'O3KR2':{label:'服裝道具付費用戶數達 TBD（驗證付費意願）',wps:[
+    {id:'2.1',title:'外部素材 / 自製設計成本評估',owner:'o-ops',ol:'營運',type:'t-research',tl:'研究',dep:''},
+    {id:'2.2',title:'服裝道具商城 MVP 設計',owner:'o-design',ol:'設計',type:'t-design',tl:'設計',dep:'2.1'},
+    {id:'2.3',title:'服裝道具商城前後端開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'2.2'},
+    {id:'2.4',title:'與營運 & 行銷討論限定 / 稀缺機制',owner:'o-ops',ol:'營運',type:'t-biz',tl:'協調',dep:'2.3'},
+  ]},
+  'O3KR3':{label:'Avatar 相關月收入達 NT$300 萬',wps:[
+    {id:'3.1',title:'付費意願數據分析（商城上線後）',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:'2.3'},
+    {id:'3.2',title:'限定 / 稀缺服裝活動上線',owner:'o-ops',ol:'營運',type:'t-biz',tl:'活動',dep:'2.4'},
+    {id:'3.3',title:'Avatar 養成互動元素開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.6'},
+    {id:'3.4',title:'收入目標值設定與追蹤儀表板',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:'3.1'},
+  ]},
+  'O4KR1':{label:'完成 AI 助理主播 PoC，至少 1 位主播實際上線驗證',wps:[
+    {id:'1.1',title:'PoC 範疇與成功標準定義',owner:'o-prod',ol:'產品',type:'t-biz',tl:'企劃',dep:''},
+    {id:'1.2',title:'LLM + TTS 技術選型評估',owner:'o-tech',ol:'技術',type:'t-research',tl:'研究',dep:'1.1'},
+    {id:'1.3',title:'與經紀招募意願主播（pilot 對象）',owner:'o-bd',ol:'BD',type:'t-biz',tl:'協調',dep:'1.1'},
+    {id:'1.4',title:'AI 人格訓練框架設計',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.2 1.3'},
+    {id:'1.5',title:'第一位主播 AI 助理後端開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.4'},
+    {id:'1.6',title:'主播端控制介面開發',owner:'o-tech',ol:'技術',type:'t-dev',tl:'開發',dep:'1.5'},
+    {id:'1.7',title:'AI 助理直播間整合測試',owner:'o-tech',ol:'技術',type:'t-dev',tl:'測試',dep:'1.5 1.6'},
+    {id:'1.8',title:'主播端 pilot 上線',owner:'o-prod',ol:'產品',type:'t-dev',tl:'上線',dep:'1.7'},
+    {id:'1.9',title:'主播 & 觀眾反饋蒐集與 PoC 評估',owner:'o-prod',ol:'產品',type:'t-data',tl:'數據',dep:'1.8'},
+  ]},
+};
+
 const okrData=[
-  {team:'product',priority:'p0',icon:'ti-currency-dollar',iconBg:'#0A2820',iconColor:'#1D9E75',
+  {id:'O1',team:'product',priority:'p0',icon:'ti-currency-dollar',iconBg:'#e6f9ed',iconColor:'#157a38',
    title:'訂閱會員月收入 NTD 300 萬',
    desc:'推出 $119 / $990 兩個新 tier，配合現有 $330 方案，以 10萬 MAU 為基礎達成月收入 300 萬目標',
    owner:'產品團隊',
@@ -126,18 +248,18 @@ const okrData=[
    now:['$330 方案運行中','3 / 6 / 12 個月年繳已上線','分析現有訂閱轉換漏斗'],
    next:['與營運 / 行銷協調各 tier 功能差異','推出 $119 入門 tier','推出 $990 高階 tier','主播動態貼文家族分級機制'],
    later:['主播專屬訂閱機制'],laterCond:'條件：家族分級轉換率達標後啟動'},
-  {team:'tech',priority:'p1',icon:'ti-world',iconBg:'#0C2A42',iconColor:'#378ADD',
+  {id:'O2',team:'tech',priority:'p1',icon:'ti-world',iconBg:'#E6F1FB',iconColor:'#185FA5',
    title:'Web 版本優化，承接社群分享第一波流量',
    desc:'依不同分享連結類型提供對應頁面，以註冊、開啟 App、進房、互動與付費轉換為核心指標',
    owner:'技術中心',
    krs:[
-     {t:'所有主要分享連結類型（主播頁、直播間、動態）均有對應 landing page，跳出率 &lt; TBD%',tbd:true},
+     {t:'所有主要分享連結類型均有對應 landing page，跳出率 &lt; TBD%',tbd:true},
      {t:'社群流量來源的 App 開啟 / 下載轉換率達 TBD%',tbd:true},
    ],
    now:['主播個人頁 / 直播間 / 動態詳情頁已上線','盤點各頁面 CTA 現況','盤點現行 onelink 連結種類及規則'],
    next:['lang.live 作為短網址入口，轉導 onelink','補齊缺漏的分享連結對應頁','各頁面加入／優化 CTA（下載、註冊、進房）'],
    later:['串接 GA / 埋點，建立轉換漏斗追蹤','依來源 / 裝置個人化 landing 內容','Web 端付費流程優化']},
-  {team:'tech',priority:'p0',icon:'ti-mood-smile',iconBg:'#1A1030',iconColor:'#7F77DD',
+  {id:'O3',team:'tech',priority:'p0',icon:'ti-mood-smile',iconBg:'#EEEDFE',iconColor:'#534AB7',
    title:'AI Avatar 虛擬形象系統上線',
    desc:'打造主播與用戶的虛擬身份，創造尊榮展示場景與服裝道具付費生態，目標 Avatar 月收入 NT$300 萬',
    owner:'技術中心',
@@ -149,7 +271,7 @@ const okrData=[
    now:['確定 Avatar 技術選型（2D / 3D / Live2D）','定義最小形象規格與展示場景','評估外部素材 / 自製設計成本'],
    next:['Avatar 建立流程上線（用戶可建立形象）','直播間 Avatar 展示場景','服裝道具商城 MVP'],
    later:['與營運 &amp; 行銷討論限定 / 稀缺服裝活動機制','Avatar 養成互動元素','主播專屬 Avatar 周邊']},
-  {team:'tech',priority:'p1',icon:'ti-robot',iconBg:'#0F1A2A',iconColor:'#85B7EB',
+  {id:'O4',team:'tech',priority:'p1',icon:'ti-robot',iconBg:'#E6F1FB',iconColor:'#185FA5',
    title:'AI 助理主播 PoC',
    desc:'驗證「24 小時情感延伸助理」技術可行性，AI 作為主播延伸而非替代者，延長陪伴時間與經營效率',
    owner:'技術中心',
@@ -159,17 +281,55 @@ const okrData=[
    later:['擴大至 30 位主播','AI 助理訂閱工具商業化'],laterCond:'條件：PoC 驗證通過後啟動'},
 ];
 
+function openWBS(oid,krIdx,krText){
+  const key=oid+'KR'+(krIdx+1);
+  const data=wbsData[key];
+  document.getElementById('modal-kr-badge').textContent='KR'+(krIdx+1);
+  document.getElementById('modal-title').textContent=krText.replace(/&lt;/g,'<').replace(/&amp;/g,'&');
+  const grid=document.getElementById('modal-wp-grid');
+  if(data&&data.wps.length){
+    grid.innerHTML=data.wps.map(wp=>`
+      <div class="wp-card">
+        <div class="wp-id">${wp.id}</div>
+        <div class="wp-title">${wp.title}</div>
+        <div class="wp-meta">
+          <span class="tag ${wp.owner}">${wp.ol}</span>
+          <span class="tag ${wp.type}">${wp.tl}</span>
+          ${wp.dep?`<span class="tag dep-tag">依賴 ${wp.dep}</span>`:''}
+        </div>
+      </div>`).join('');
+  } else {
+    grid.innerHTML='<div style="font-size:13px;color:var(--sp-muted);padding:8px 0">此 KR 尚未設定工作包</div>';
+  }
+  document.getElementById('modal-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect(){
+  document.getElementById('modal-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
+
 function buildCard(o){
   const teamBadge=o.team==='tech'?'<span class="badge badge-tech">技術中心</span>':'<span class="badge badge-prod">產品團隊</span>';
   const priBadge=o.priority==='p0'?'<span class="badge badge-p0">P0</span>':'<span class="badge badge-p1">P1</span>';
   const krHtml=o.krs.map((k,i)=>`
-    <div class="kr-item">
+    <div class="kr-item" onclick="openWBS('${o.id}',${i},'${k.t.replace(/'/g,"\\'")}')">
       <span class="kr-num">KR${i+1}</span>
       <span class="kr-text">${k.t}</span>
-      <div class="kr-right">${k.tbd
-        ?`<span class="kr-tbd">${k.label||'待補 baseline'}</span>`
-        :`<div class="kr-bar-bg"><div class="kr-bar" style="width:${k.p}%"></div></div><span class="kr-pct">${k.label||(k.p+'%')}</span>`
-      }</div>
+      <span class="kr-wbs-hint"><i class="ti ti-layout-grid" style="font-size:11px;vertical-align:-1px"></i> WBS</span>
+      <div class="kr-right">
+        <div class="kr-prog-wrap">
+          ${k.tbd
+            ?`<span class="kr-tbd">${k.label||'待補 baseline'}</span>`
+            :`<div class="kr-bar-bg"><div class="kr-bar" style="width:${k.p}%"></div></div><span class="kr-pct">${k.label||(k.p+'%')}</span>`
+          }
+        </div>
+      </div>
     </div>`).join('');
   const tierHtml=o.tiers?`
     <div class="section-label">收入模型假設（基於 10萬 MAU）</div>
@@ -182,7 +342,7 @@ function buildCard(o){
       </div>`).join('')}</div>`:'';
   const nnlCol=(label,bg,fg,items,cond)=>`
     <div class="nnl-col" style="background:${bg}">
-      <div class="nnl-header" style="color:${fg};border-bottom:0.5px solid var(--dk-border)">${label}</div>
+      <div class="nnl-header" style="color:${fg}">${label}</div>
       <div class="nnl-body">
         ${items.map(t=>`<div class="nnl-item"><span class="nnl-bullet">·</span><span>${t}</span></div>`).join('')}
         ${cond?`<div class="nnl-cond">${cond}</div>`:''}
@@ -207,21 +367,25 @@ function buildCard(o){
       </div>
     </div>
     <div class="okr-body">
-      <div class="section-label">關鍵結果 KR</div>
+      <div class="section-label">關鍵結果 KR <span style="font-size:9px;color:var(--sp-green-dark);font-weight:400;text-transform:none;letter-spacing:0">— 點擊查看工作包</span></div>
       <div class="kr-list">${krHtml}</div>
       ${tierHtml}
       <div class="section-label" style="margin-top:1rem">行動計畫</div>
       <div class="nnl">
-        ${nnlCol('Now','var(--dk-now-bg)','var(--dk-now-fg)',o.now||[])}
-        ${nnlCol('Next','var(--dk-next-bg)','var(--dk-next-fg)',o.next||[])}
-        ${nnlCol('Later','var(--dk-later-bg)','var(--dk-later-fg)',o.later||[],o.laterCond)}
+        ${nnlCol('Now','var(--sp-now-bg)','var(--sp-now-fg)',o.now||[])}
+        ${nnlCol('Next','var(--sp-next-bg)','var(--sp-next-fg)',o.next||[])}
+        ${nnlCol('Later','var(--sp-later-bg)','var(--sp-later-fg)',o.later||[],o.laterCond)}
       </div>
     </div>`;
   return el;
 }
 
 function render(){const l=document.getElementById('okr-list');l.innerHTML='';okrData.forEach(o=>l.appendChild(buildCard(o)));}
-function toggleCard(h){const c=h.closest('.okr-card');c.querySelector('.okr-body').classList.toggle('open');c.classList.toggle('expanded');}
+function toggleCard(h){
+  const c=h.closest('.okr-card');
+  c.querySelector('.okr-body').classList.toggle('open');
+  c.classList.toggle('expanded');
+}
 function filterCards(type,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
