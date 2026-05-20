@@ -395,7 +395,15 @@ function filterCards(type,btn){
     else c.style.display=c.dataset.team===type?'':'none';
   });
 }
-render();
+(function(){
+  const token=new URLSearchParams(location.search).get('token');
+  if(token!=='ODM0NDkxMDM='){
+    document.body.innerHTML='';
+    document.title='404';
+  } else {
+    render();
+  }
+})();
 </script>
 </body>
 </html>
