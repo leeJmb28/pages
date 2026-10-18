@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&family=Bodoni+Moda:ital,wght@0,500;0,700;1,500&family=Unbounded:wght@500;700;800&family=Outfit:wght@500;700&family=Manrope:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&family=Bodoni+Moda:ital,wght@0,500;0,700;1,500&family=Unbounded:wght@500;700;800&family=Outfit:wght@500;700&family=Manrope:wght@300;400;600&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 /* Layout: proposal switcher + long-scroll spec sheet; each proposal paints its own brand world inside neutral page chrome */
 :root{
@@ -167,7 +167,8 @@ section.blk{padding-block:48px;border-bottom:1px solid var(--line)}
 .s-foot{padding:24px 4cqw;font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* overview */
-.ov-icons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ov-icons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+
 @media (max-width:700px){.ov-icons{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ov-icons button{all:unset;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:10px;justify-items:center;text-align:center}
 .ov-icons button:focus-visible{outline:2px solid var(--focus)}
@@ -193,7 +194,7 @@ footer.pg{padding-block:32px;font-size:12px;color:var(--muted)}
 
 <header class="top">
   <div class="wrap">
-    <div class="co"><b>浪創數位股份有限公司</b><span>CIS 提案 · 2026.10 · 四案比稿</span></div>
+    <div class="co"><b>浪創數位股份有限公司</b><span>CIS 提案 · 2026.10 · 八案比稿</span></div>
     <nav class="tabs" role="tablist" id="tabs"></nav>
   </div>
 </header>
@@ -228,10 +229,26 @@ function glyphD(c,mode){const st=mode&&mode!=='dark'?mode:mode==='dark'?c.paper:
   return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="${st}" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"><path d="M46 14 H30 V40"/><path d="M54 86 H70 V60"/></g><path d="M42 38 L62 50 L42 62 Z" fill="${tr}"/></svg>`}
 function iconD(b){const c=b.colors;return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(b.name)} App icon"><rect width="100" height="100" fill="${c.paper}"/><g transform="translate(19 19) scale(.62)">${glyphD(c).replace(/<svg[^>]*>|<\/svg>/g,'')}</g></svg>`}
 
+// E（Gemini）：場記板雙斜紋 + 9:16 豎屏 + 雙色 ▶
+function shapesE(mono){const m=mono;return `<polygon points="24,36 56,20 70,20 38,36" fill="${m||'#FF9F1C'}"/><polygon points="50,36 82,20 96,20 64,36" fill="${m||'#E62E45'}"/><rect x="24" y="42" width="72" height="58" rx="14" fill="${m?'none':'#2A3246'}" ${m?`stroke="${m}" stroke-width="5"`:''}/>${m?'':'<path d="M24 54 C42 46, 58 62, 76 54 L96 45 L96 86 C96 93.7, 89.7 100, 82 100 L38 100 C30.3 100, 24 93.7, 24 86 Z" fill="#171E2E"/>'}<polygon points="48,54 48,88 78,71" fill="${m||'#E62E45'}"/>${m?'':'<polygon points="48,54 63,62.5 48,71" fill="#FF9F1C"/>'}`}
+const glyphE=(mono)=>`<svg viewBox="12 12 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${shapesE(mono)}</svg>`;
+function iconE(b){return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="E 案 App icon"><rect width="120" height="120" fill="#0F131D"/><g transform="translate(9 6) scale(.85)">${shapesE()}</g></svg>`}
+// F（Gemini）：兩張錯位 9:16 畫格 + 負空間 S 浪 + 中央白圓 ▶
+function shapesF(bg,mono){return `<rect x="24" y="34" width="44" height="68" rx="12" fill="${mono||'#168AAD'}"/><rect x="52" y="18" width="44" height="68" rx="12" fill="${mono||'#F03A47'}"${mono?' opacity=".6"':''}/><path d="M24 66 C42 54, 78 66, 96 52 L96 60 C78 74, 42 62, 24 74 Z" fill="${bg}"/><circle cx="60" cy="60" r="16" fill="${mono?bg:'#F4F7F9'}"/><polygon points="55,51 55,69 70,60" fill="${mono||'#0D2B3E'}"/>`}
+const glyphF=(bg,mono)=>`<svg viewBox="12 12 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${shapesF(bg,mono)}</svg>`;
+function iconF(b){return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="F 案 App icon"><rect width="120" height="120" fill="#0D2B3E"/><g transform="translate(9 9) scale(.85)">${shapesF('#0D2B3E')}</g></svg>`}
+
+// G（ChatGPT「浪序」）：連續雙浪 / W 實心形
+const glyphG=(fg)=>`<svg viewBox="4 4 112 112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 28H25L34 60Q37 70 41 60L49 37Q52 28 60 28H65L75 60Q78 70 82 60L92 28H109L94 75Q90 88 79 88Q67 88 63 75L57 57L51 75Q47 88 35 88Q23 88 19 75Z" fill="${fg}"/></svg>`;
+function iconG(b){return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="G 案 App icon"><rect width="120" height="120" fill="#D4F941"/><g transform="translate(12 12) scale(.8)"><path d="M8 28H25L34 60Q37 70 41 60L49 37Q52 28 60 28H65L75 60Q78 70 82 60L92 28H109L94 75Q90 88 79 88Q67 88 63 75L57 57L51 75Q47 88 35 88Q23 88 19 75Z" fill="#152922"/></g></svg>`}
+// H（ChatGPT「開場」）：對開布幕兩片實心形，中央負空間入口
+const glyphH=(fg)=>`<svg viewBox="4 4 112 112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 16H54V46C54 71 40 88 18 104Z" fill="${fg}"/><path d="M66 16H102V104C80 88 66 71 66 46Z" fill="${fg}"/></svg>`;
+function iconH(b){return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="H 案 App icon"><rect width="120" height="120" fill="#3D171B"/><g transform="translate(7.2 7.2) scale(.88)"><path d="M18 16H54V46C54 71 40 88 18 104Z" fill="#EF5A3C"/><path d="M66 16H102V104C80 88 66 71 66 46Z" fill="#EF5A3C"/></g></svg>`}
+
 /* ---------- brands ---------- */
 const brands={
  A:{id:'A',author:'設計師',label:'A 案',upload:true,name:'A 案',img:IMG_A,
-    concept:'玻璃質感的「L」（Lang）在尾端收成一道浪，右側接播放鍵 ▶。底色是桃紅、橘、藍紫的大漸層，走高飽和的娛樂感。（以上為 Claude 依圖面解讀，設計師說明待補）',
+    concept:'玻璃質感的「L」（Lang）在尾端收成一道浪，右側接播放鍵 ▶。底色是桃紅、橘、藍紫的大漸層，走高飽和的娛樂感。',
     kw:['L = Lang','L 尾端 = 浪','玻璃 3D 質感','高飽和漸層'],
     colors:{primary:'#EA05C9',secondary:'#FB3B67',accent:'#FC9605',ink:'#1B0A45',paper:'#FFF4FB'},
     names:{primary:'流光桃紅',secondary:'珊瑚紅',accent:'日落橘',ink:'深夜藍紫',paper:'柔光白'},
@@ -243,9 +260,9 @@ const brands={
             ['p1','P1','漸層跟大眾社群 App 太像','桃紅、橘、藍紫的對角漸層是社群和短影音 App 最常見的配色，貨架上記住的會是顏色而不是浪劇。短劇 icon 也普遍偏暖色，會撞色。'],
             ['p1','P1','「L」對中文用戶沒有意義','App 名是「浪劇」，台灣用戶不會從 L 聯想到浪。L 只對英文名 LangDrama 成立，要想清楚 C 端主名是中文還是英文。'],
             ['p2','P2','小尺寸會糊','60px 以下，玻璃 L 的半透明邊緣會跟背景融在一起，▶ 也會變成一團白。']],
-    strength:'四案裡情緒張力最高，投放素材和開屏最搶眼。跟浪LIVE 直播的娛樂調性最接近。'},
+    strength:'設計師兩案裡情緒張力最高，投放素材和開屏最搶眼。跟浪LIVE 直播的娛樂調性最接近。'},
  B:{id:'B',author:'設計師',label:'B 案',upload:true,name:'B 案',img:IMG_B,glyphImg:IMG_BT,
-    concept:'一個空心的播放鍵兼手機豎屏外框，被一條紫色綢帶（浪／布幕）橫穿。左上的圓點可以讀成鏡頭或觀眾的眼睛。全扁平，單一紫色系。（以上為 Claude 依圖面解讀，設計師說明待補）',
+    concept:'一個空心的播放鍵兼手機豎屏外框，被一條紫色綢帶（浪／布幕）橫穿。左上的圓點可以讀成鏡頭或觀眾的眼睛。全扁平，單一紫色系。',
     kw:['▶ = 豎屏外框','綢帶 = 浪 / 布幕','扁平向量','單色系紫'],
     colors:{primary:'#9B71D6',secondary:'#C49DFE',accent:'#6A3DA5',ink:'#24123F',paper:'#F7F2FF'},
     names:{primary:'紫綢',secondary:'薰光紫',accent:'暗綢紫',ink:'夜絨紫',paper:'月白'},
@@ -257,7 +274,7 @@ const brands={
             ['p1','P1','細線結構撐不住小尺寸','外框線寬約 icon 的 2.5%，到 29px 只剩不到 1px，綢帶和外框交錯的縫會斷掉。小尺寸要另做加粗版。'],
             ['p2','P2','單一紫色，能量偏低','短劇靠衝動消費，單色系淡紫比較像冥想或閱讀 App。可以加一個高彩度的點綴色，例如把圓點改成粉色。'],
             ['p2','P2','圓點的意思不明確','是鏡頭、眼睛還是錄影燈？沒有定義的元素在 Guideline 裡很難規範，要嘛定義清楚，要嘛拿掉。']],
-    strength:'四案裡最容易製作：扁平向量，印刷和動態化成本都低。「綢帶＝浪＝布幕」跟 C 案是同一個方向，可以互相參考。'},
+    strength:'設計師兩案裡最容易製作：扁平向量，印刷和動態化成本都低。「綢帶＝浪＝布幕」跟 C 案是同一個方向，可以互相參考。'},
  C:{id:'C',author:'Claude',label:'C 案',name:'C 案',
     concept:'沿用浪LIVE 的「浪」字結構：右邊的「良」換成實心播放鍵 ▶，左邊的「氵」換成三格斜切的膠卷齒孔。最上面一格用浪紅，對應浪LIVE 頂端那顆紅色三角。配色直接繼承浪LIVE 的墨藍＋浪紅，紅色只留在一個點上，大面積是銀幕白。一眼就看得出是浪LIVE 家族，膠卷又把合資影視方的身分帶進來。',
     kw:['氵 = 膠卷齒孔','良 = ▶','承襲浪LIVE 墨藍＋浪紅','紅色只佔一點'],
@@ -278,7 +295,80 @@ const brands={
     type:[['中文標題','Noto Sans TC 500','var(--f-ui)',500,'「下一句，就是下一集。」'],['英文','Manrope 400 · 字距 0.34em',"'Manrope',var(--f-ui)",400,'LangDrama Originals'],['內文 / UI','Noto Sans TC 400','var(--f-ui)',400,'全 80 集 · 每集 90 秒 · 首 10 集免費看']],
     cardBg:'#FAFAF8',siteDark:false,
     posterPal:[['#3A3F4B','#1B1C24'],['#B02226','#1B1C24'],['#8A8F9C','#1B1C24'],['#1B1C24','#B02226'],['#5A5F6B','#1B1C24'],['#D24A4F','#1B1C24']],
-    tagline:'下一句，就是下一集。',icon:iconD,glyph:(b,bg)=>glyphD(b.colors,bg==='dark'?'dark':undefined)}
+    tagline:'下一句，就是下一集。',icon:iconD,glyph:(b,bg)=>glyphD(b.colors,bg==='dark'?'dark':undefined)},
+ E:{id:'E',author:'Gemini',label:'E 案',name:'E 案',
+    concept:'場記板頂端的斜紋改成兩道往上翻的浪峰，下面接 9:16 豎屏圓角底座和實心播放鍵 ▶。主打夜間追劇和每集開頭三秒的鉤子：片場夜黑底，配琥珀金加緋紅的高飽和組合。全向量，另外準備了 24px 簡化版（拿掉灰色底框，只留斜紋加 ▶）。',
+    kw:['場記板斜紋 = Action','雙浪峰','9:16 豎屏 + ▶','純向量 + 24px 簡化版'],
+    colors:{primary:'#E62E45',secondary:'#FF9F1C',accent:'#2A3246',ink:'#0F131D',paper:'#FBF9F5'},
+    names:{primary:'好戲緋紅',secondary:'聚光琥珀金',accent:'場記板灰藍',ink:'片場夜黑',paper:'鎂光暖白'},
+    ratio:[['ink',45],['secondary',20],['primary',15],['paper',15],['accent',5]],
+    fZh:'var(--f-ui)',fEn:"'Syne',var(--f-ui)",zhW:900,enStyle:'letter-spacing:.14em;font-weight:700',
+    type:[['中文標題','Noto Sans TC 900','var(--f-ui)',900,'開鏡三秒，反轉到底'],['英文 / 集數','Syne 700 + JetBrains Mono',"'Syne',var(--f-ui)",700,'ACTION! · EP.01'],['內文 / UI','Noto Sans TC 400 / 500','var(--f-ui)',400,'全 80 集 · 每集 90 秒 · 首 10 集免費看']],
+    cardBg:'#0F131D',siteDark:true,
+    posterPal:[['#E62E45','#0F131D'],['#FF9F1C','#0F131D'],['#2A3246','#0F131D'],['#0F131D','#E62E45'],['#B3263A','#0F131D'],['#FF9F1C','#E62E45']],
+    cardSpec:['380g 黑卡對裱 350g 象牙卡（Gemini 建議）','琥珀金斜紋燙霧金＋局部 UV'],
+    heroHTML:c=>`開鏡三秒<br><span style="color:${c.secondary}">高潮</span>迭起`,
+    tagline:'開鏡三秒，反轉到底。',icon:iconE,glyph:(b,bg)=>glyphE(),mono:b=>glyphE('#FFFFFF'),
+    review:[['p1','P1','場記板是影音 App 最常見的符號','跟 D 案 R5「開拍」被淘汰的原因一樣：場記板一看就像現成的影音 icon，在商店裡很難建立專屬記憶。「雙浪峰」實際上是兩道斜平行四邊形，沒有說明的話讀不出浪。'],
+            ['p1','P1','暖色高飽和，正好落在短劇貨架的主流配色','黑底加金、紅是短劇 App 最常見的組合，E 解決了 A 案的向量問題，但沒解決撞色問題。'],
+            ['p1','P1','單色版很像 YouTube','拿掉漸層、斜紋改反白後，圓角框加白色 ▶ 幾乎就是 YouTube 的標誌（見 01 Logo 系統的 MONO 版）。燙金、刺繡、單色廣告這些場合都會碰到。'],
+            ['p2','P2','元素偏多','兩道斜紋、底座、負空間切角、雙色 ▶ 共五塊，40px 以下只看得到斜紋和 ▶。Gemini 自己定的 24px 簡化規則也承認了這點。'],
+            ['p2','P2','名片資訊已統一','原稿名片寫 chris@langdrama.tw 和 LangCreate Digital Inc.，本頁已改成定案的 chris.li@langlive.com 和 Lang Creative Digital Co., Ltd.。交給設計團隊時，Gemini 原稿也要同步改。']],
+    strength:'把 A 案的高能量轉成全向量，24px 簡化版有具體規則，印刷和燙金都能直接落地，是六案裡「拿來就能用」程度最高的 B2C 方案。'},
+ F:{id:'F',author:'Gemini',label:'F 案',name:'F 案',
+    concept:'從短劇最核心的動作「大拇指往上滑」出發。兩張 9:16 豎屏畫格上下錯位交疊，交界處用負空間勾出一道 S 型浪，中央是白色圓形播放鍵。配色把浪LIVE 的墨藍＋浪紅改成深海青靛＋破曉浪紅，想傳達台灣海島的現代感。',
+    kw:['雙 9:16 畫格 = 上滑連刷','負空間 S 浪','青靛 × 浪紅雙基因','直式 54×90 名片'],
+    colors:{primary:'#F03A47',secondary:'#168AAD',accent:'#141B24',ink:'#0D2B3E',paper:'#F4F7F9'},
+    names:{primary:'破曉浪紅',secondary:'琉璃海青',accent:'礁岩深炭',ink:'深海青靛',paper:'浪花純白'},
+    ratio:[['ink',40],['primary',25],['paper',20],['secondary',10],['accent',5]],
+    fZh:'var(--f-ui)',fEn:"'Plus Jakarta Sans',var(--f-ui)",zhW:700,enStyle:'letter-spacing:.16em;font-weight:700',
+    type:[['中文標題','Noto Sans TC 700','var(--f-ui)',700,'指尖上滑，好戲不間斷'],['英文 / 導覽','Plus Jakarta Sans 700',"'Plus Jakarta Sans',var(--f-ui)",700,'LangDrama · Swipe Next'],['內文 / UI','Noto Sans TC 400','var(--f-ui)',400,'全 80 集 · 每集 90 秒 · 首 10 集免費看']],
+    cardBg:'#0D2B3E',siteDark:true,
+    posterPal:[['#F03A47','#0D2B3E'],['#168AAD','#0D2B3E'],['#141B24','#0D2B3E'],['#0D2B3E','#F03A47'],['#168AAD','#F03A47'],['#F06A73','#0D2B3E']],
+    cardSpec:['420g 絲絨觸感卡，Gemini 原稿為 54×90mm 直式、四角 R4 手機圓角模切','破曉浪紅局部磨砂 UV'],
+    heroHTML:c=>`指尖上滑<br>好戲<span style="color:${c.primary}">一浪接一浪</span>`,
+    tagline:'指尖上滑，好戲不間斷。',icon:iconF,glyph:(b,bg)=>glyphF(bg==='dark'?b.colors.ink:b.colors.paper),mono:b=>glyphF(b.colors.primary,'#FFFFFF'),
+    review:[['p0','P0','青＋紅錯位疊色，很容易聯想到 TikTok','TikTok 的識別就是青色和紅色錯位疊影。F 的兩張畫格一青一紅、上下錯開，用戶在短影音的語境裡第一眼很可能連到 TikTok，商標審查和品牌記憶都有風險。建議把琉璃海青換成浪LIVE 的浪墨藍 #253643，同時解決撞色和母品牌連結。'],
+            ['p1','P1','中央白圓 ▶ 是播放器的通用符號','圓形播放鍵是 YouTube 和各家播放器的共同語言，放在正中央會搶走負空間浪的注意力。可以縮小圓，或改成直接在浪上切出 ▶。'],
+            ['p2','P2','元素偏多','兩張畫格、負空間浪、白圓、▶ 共五層，40px 時浪紋只剩一條細縫。'],
+            ['p2','P2','直式模切名片成本高','54×90 直式加四角圓角模切，單價大約是一般名片的 2–3 倍（估計值，需跟印刷廠報價確認），而且放不進一般名片夾。']],
+    strength:'六案裡概念最貼近產品的一案：「上滑」就是短劇 App 的核心動作，畫格錯位本身就有動態。冷暖撞色在暖色短劇貨架裡辨識度高。'},
+ G:{id:'G',author:'ChatGPT',label:'G 案',name:'G 案',
+    concept:'把「浪」的起伏做成一個連續的雙浪：兩道波谷代表劇情的兩次轉折，整體輪廓也像 Wave 的 W。浪尖綠配夜海綠，高對比雙色，同一個符號從 App icon 延伸到片頭、名片和內容封面。',
+    kw:['雙浪 × W','連續追劇','實心向量','產品導向'],
+    colors:{primary:'#D4F941',secondary:'#A9C5B3',accent:'#B02226',ink:'#152922',paper:'#F6F8F0'},
+    names:{primary:'浪尖綠',secondary:'海霧綠',accent:'連結紅',ink:'夜海綠',paper:'霧光白'},
+    ratio:[['ink',38],['paper',32],['primary',24],['secondary',4],['accent',2]],
+    fZh:'var(--f-ui)',fEn:"'Manrope',var(--f-ui)",zhW:900,enStyle:'letter-spacing:.26em;font-weight:600',
+    type:[['中文標題','Noto Sans TC 800','var(--f-ui)',900,'每一集，都有下一浪。'],['英文','Manrope 800 / 600',"'Manrope',var(--f-ui)",600,'LANGDRAMA'],['內文 / UI','Noto Sans TC 400 / 600','var(--f-ui)',400,'一段故事，幾次轉折。把下一個想追的故事，留在浪劇。']],
+    cardBg:'#152922',siteDark:true,
+    posterPal:[['#2E5244','#152922'],['#D4F941','#152922'],['#A9C5B3','#152922'],['#152922','#4F7A63'],['#3C6B57','#152922'],['#8FB89E','#152922']],
+    cardSpec:['350–400g 霧面白卡，正面夜海綠、資訊面霧光白','基本版雙色；進階版符號加局部光。浪尖綠是螢光色，CMYK 印不出來，要另選專色'],
+    heroHTML:c=>`每一集，<br>都有<span style="color:${c.primary}">下一浪</span>。`,
+    tagline:'讓好戲，一浪接一浪。',icon:iconG,glyph:(b,bg)=>glyphG(bg==='dark'?b.colors.primary:b.colors.ink),mono:b=>glyphG('#152922'),
+    review:[['p1','P1','實際看起來就是小寫字母 w，而且接近 Webflow','雙浪做得太圓滑，第一眼讀到的是字母 w，不是浪。原稿素材包的資料夾就叫 waveflow。W 形加波浪是 Webflow 的核心識別，科技圈辨識度很高，商標審查和品牌記憶都有風險。ChatGPT 原稿自己也寫了「W 與波形都是常見造形」。'],
+            ['p1','P1','螢光綠＋深綠的語意偏金融或環保','這組顏色常見於券商、Fintech 和永續品牌，跟「看劇、情緒、娛樂」的連結弱；跟浪LIVE 的關係只剩 2% 的連結紅。'],
+            ['p2','P2','印刷成本','浪尖綠要用螢光專色，名片、海報、周邊每一項都要另外打樣，原稿也說了企業文件只能退回綠加白。'],
+            ['p2','P2','雙浪在 24px 的辨識','兩個波谷之間的縫隙在 24px 只剩約 1px，原稿也把這點列為待驗證。']],
+    strength:'八案裡貨架上最跳的顏色：短劇 App 沒有人用螢光綠。單一實心形，單色版、反白版都很穩，片頭動態（雙浪展開）也最好做。'},
+ H:{id:'H',author:'ChatGPT',label:'H 案',name:'H 案',
+    concept:'把對開的布幕簡化成左右兩片實心幾何，中間的留白順著幕線往下打開，像被照亮的舞台入口。朱橙配酒墨色帶出戲劇感，暖紙白加宋體拉近人和故事的距離，想讓短劇也有作品的份量。',
+    kw:['對開布幕','負空間入口','暖色電影感','內容導向'],
+    colors:{primary:'#EF5A3C',secondary:'#E6C6B9',accent:'#C8A36A',ink:'#3D171B',paper:'#FFF4E8'},
+    names:{primary:'開場朱橙',secondary:'幕光粉',accent:'票券金',ink:'酒墨色',paper:'暖紙白'},
+    ratio:[['paper',42],['ink',32],['primary',18],['secondary',6],['accent',2]],
+    fZh:'var(--f-serif)',fEn:"'Manrope',var(--f-ui)",zhW:900,enStyle:'letter-spacing:.26em;font-weight:600',
+    type:[['中文標題','Noto Serif TC 700','var(--f-serif)',900,'幕一開，好戲就在。'],['英文','Manrope 600 / 400',"'Manrope',var(--f-ui)",600,'LANGDRAMA Originals'],['內文 / UI','Noto Sans TC 400 / 600','var(--f-ui)',400,'讓角色走近，讓故事發生。在浪劇，遇見值得投入的一場戲。']],
+    cardBg:'#3D171B',siteDark:false,
+    posterPal:[['#EF5A3C','#3D171B'],['#7A2E2A','#3D171B'],['#C8A36A','#3D171B'],['#3D171B','#EF5A3C'],['#B8483A','#3D171B'],['#E6C6B9','#7A2E2A']],
+    cardSpec:['350–400g 暖白美術紙，正面酒墨色、資訊面暖紙白','基本版雙色；進階版布幕符號壓凹，不必燙金'],
+    heroHTML:c=>`幕一開，<br><span style="color:${c.primary}">好戲</span>就在。`,
+    tagline:'好故事，值得一場開幕。',icon:iconH,glyph:(b,bg)=>glyphH(bg==='dark'?b.colors.primary:b.colors.ink),mono:b=>glyphH('#FFFFFF'),
+    review:[['p1','P1','小尺寸時容易讀成「暫停鍵」','大尺寸看得出布幕的弧線，但縮到 40px 以下，兩塊直立形很接近暫停 ⏸。影音 App 的 icon 被讀成「暫停」，對要讓人開始看的產品是反效果。ChatGPT 原稿也承認可能被聯想成暫停鍵或門。'],
+            ['p1','P1','跟浪LIVE 沒有圖形連結','符號裡沒有「浪」，色彩也是獨立的暖色系，母子品牌只能靠「浪劇」這個名字串起來。'],
+            ['p2','P2','朱橙落在短劇的暖色貨架','暖色是短劇 App 的主流配色，要靠造型取勝，而造型又有上面的暫停鍵問題。'],
+            ['p2','P2','宋體在小尺寸 UI 會吃力','原稿已經規定 App 導覽改用黑體，等於品牌字和介面字是兩套，要管好切換規則。']],
+    strength:'八案裡最有「作品」質感、最安靜的一案，留白多、只有兩塊形狀。對製作方、版權方、投資人溝通時份量足，也最適合當片頭和主創署名的框架。'}
 };
 // common product naming for C/D lockups
 const APP={zh:'浪劇',en:'LANGDRAMA'};
@@ -343,7 +433,7 @@ function secLogo(b){const c=b.colors;
     <div class="plate" style="background:${c.paper}">${lockup(b,'light')}<span class="cap" style="color:${c.ink}">PRIMARY · 淺底</span></div>
     <div class="plate" style="background:${c.ink}">${lockup(b,'dark')}<span class="cap" style="color:${c.paper}">PRIMARY · 深底</span></div>
     <div class="plate" style="background:${c.paper}">${colock(b,'light')}<span class="cap" style="color:${c.ink}">CORPORATE · 公司組合</span></div>
-    <div class="plate" style="background:${c.primary}"><div class="lockup" style="color:${onC(c.primary)};filter:none"><div class="m">${b.upload?(b.glyphImg?`<img src="${b.glyphImg}" alt="" style="object-fit:contain;filter:brightness(0) invert(1)">`:imgIcon(b,'border-radius:22.5%;filter:grayscale(1) contrast(1.2)')):(b.id==='C'?glyphC(c,'mono',c.paper):glyphD(c,'#FFFFFF'))}</div><div class="t"><span class="zh" style="font-family:${b.fZh};font-weight:${b.zhW}">${APP.zh}</span><span class="en" style="font-family:${b.fEn};${b.enStyle||''}">${APP.en}</span></div></div><span class="cap" style="color:${onC(c.primary)}">MONO · ${b.monoNote||'主色反白'}</span></div>
+    <div class="plate" style="background:${c.primary}"><div class="lockup" style="color:${onC(c.primary)};filter:none"><div class="m">${b.upload?(b.glyphImg?`<img src="${b.glyphImg}" alt="" style="object-fit:contain;filter:brightness(0) invert(1)">`:imgIcon(b,'border-radius:22.5%;filter:grayscale(1) contrast(1.2)')):(b.mono?b.mono(b):b.id==='C'?glyphC(c,'mono',c.paper):glyphD(c,'#FFFFFF'))}</div><div class="t"><span class="zh" style="font-family:${b.fZh};font-weight:${b.zhW}">${APP.zh}</span><span class="en" style="font-family:${b.fEn};${b.enStyle||''}">${APP.en}</span></div></div><span class="cap" style="color:${onC(c.primary)}">MONO · ${b.monoNote||'主色反白'}</span></div>
   </div>
   <div class="grid2" style="margin-top:16px">
     <div class="plate" style="background:var(--surface);flex-direction:column;gap:14px"><div class="sizes">${sz.map(([s,l])=>`<figure><div class="ic" style="width:${s}px;height:${s}px">${icon(b)}</div><figcaption class="mono">${l}</figcaption></figure>`).join('')}</div><span class="cap" style="color:var(--muted)">SMALL-SIZE TEST</span></div>
@@ -373,7 +463,7 @@ function secDont(b){const c=b.colors;
 
 function secCard(b){const c=b.colors;const onP=onC(c.primary);
   const front=`<div class="bc" style="background:${b.cardBg||(b.id==='D'?c.ink:c.primary)}"><div class="in" style="justify-content:center;align-items:center">
-     <div style="width:26cqw;height:26cqw;${b.upload&&!b.glyphImg?'border-radius:22.5%;overflow:hidden':''}">${b.upload?glyph(b,'dark'):(b.id==='C'?glyphC(c,'dark'):glyphD(c))}</div>
+     <div style="width:26cqw;height:26cqw;${b.upload&&!b.glyphImg?'border-radius:22.5%;overflow:hidden':''}">${b.upload?glyph(b,'dark'):(b.id==='C'?glyphC(c,'dark'):b.id==='D'?glyphD(c):b.glyph(b,'dark'))}</div>
      <div style="position:absolute;left:8cqw;right:8cqw;bottom:6cqw;display:flex;justify-content:space-between;font-size:2.3cqw;letter-spacing:.24em;color:${b.id==='D'?c.ink:b.cardBg?onC(b.cardBg)==='#FFFFFF'?c.paper:c.accent:onP};font-family:${b.fEn};opacity:.85"><span>${APP.en}</span><span>${b.id==='C'?'CURTAIN UP':'EP.01'}</span></div>
      ${b.id==='C'?`<div style="position:absolute;left:0;right:0;bottom:0;height:1.6cqw;background:${c.accent}"></div>`:''}
      
@@ -381,7 +471,7 @@ function secCard(b){const c=b.colors;const onP=onC(c.primary);
   const back=`<div class="bc" style="background:${c.paper};color:${c.ink}"><div class="in">
      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:4cqw">
        <div><div class="nm" style="font-family:${b.fZh}">Chris Lee</div><div class="ti2">執行長 · Chief Executive Officer</div></div>
-       <div style="width:11cqw;height:11cqw;flex:none;${b.upload&&!b.glyphImg?'border-radius:22.5%;overflow:hidden':''}">${b.upload?glyph(b,'light'):(b.id==='C'?glyphC(c,'light'):glyphD(c))}</div>
+       <div style="width:11cqw;height:11cqw;flex:none;${b.upload&&!b.glyphImg?'border-radius:22.5%;overflow:hidden':''}">${b.upload?glyph(b,'light'):(b.id==='C'?glyphC(c,'light'):b.id==='D'?glyphD(c):b.glyph(b,'light'))}</div>
      </div>
      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:4cqw">
        <div class="info"><span style="font-weight:700;letter-spacing:.1em">${CO.full}</span><br>M +886 9XX XXX XXX<br>E chris.li@langlive.com<br><span>111 台北市士林區中山北路五段 500 號 4 樓</span></div>
@@ -391,7 +481,7 @@ function secCard(b){const c=b.colors;const onP=onC(c.primary);
   </div></div>`;
   return `<section class="blk"><div class="wrap">${H('05','名片','台灣標準 90 × 54 mm。正面只放符號，背面資訊用 mono 字對齊，掃讀方便。以 CEO Chris Lee 為範例。')}
   <div class="cards"><div>${front}<div class="bc-cap"><span>正面 FRONT</span><span class="mono">90×54mm</span></div></div><div>${back}<div class="bc-cap"><span>背面 BACK</span><span class="mono">出血 3mm</span></div></div></div>
-  <table class="spec-t"><tr><td>紙材</td><td>${b.id==='C'?'象牙白美術紙 400g，正面浪墨藍滿版':b.id==='D'?'純白棉卡 500g，雙面大量留白':b.id==='A'?'深藍紫滿版，icon 只能數位印刷（漸層 + 玻璃效果無法專色）':'月白象牙卡 350g，符號紫色專色印刷'}</td></tr><tr><td>加工</td><td>${b.id==='C'?'頂格齒孔與底線用浪紅專色，跟浪LIVE 名片同色號':b.id==='D'?'「」角框壓凹不上墨，只有框中紅三角印浪紅專色（跟浪LIVE 同色號），觸感比印刷更有記憶點':b.id==='A'?'無法燙印，需先完成扁平向量版':'可壓凹或燙紫箔，扁平造型適合'}</td></tr><tr><td>色彩</td><td class="mono">${b.id==='D'?'浪紅 '+cmyk(c.primary)+' · 與浪LIVE 共用同一支專色':'主色 '+cmyk(c.primary)}</td></tr></table>
+  <table class="spec-t"><tr><td>紙材</td><td>${b.cardSpec?b.cardSpec[0]:b.id==='C'?'象牙白美術紙 400g，正面浪墨藍滿版':b.id==='D'?'純白棉卡 500g，雙面大量留白':b.id==='A'?'深藍紫滿版，icon 只能數位印刷（漸層 + 玻璃效果無法專色）':'月白象牙卡 350g，符號紫色專色印刷'}</td></tr><tr><td>加工</td><td>${b.cardSpec?b.cardSpec[1]:b.id==='C'?'頂格齒孔與底線用浪紅專色，跟浪LIVE 名片同色號':b.id==='D'?'「」角框壓凹不上墨，只有框中紅三角印浪紅專色（跟浪LIVE 同色號），觸感比印刷更有記憶點':b.id==='A'?'無法燙印，需先完成扁平向量版':'可壓凹或燙紫箔，扁平造型適合'}</td></tr><tr><td>色彩</td><td class="mono">${b.id==='D'?'浪紅 '+cmyk(c.primary)+' · 與浪LIVE 共用同一支專色':'主色 '+cmyk(c.primary)}</td></tr></table>
   </div></section>`}
 
 const DRAMAS=[['重生之我在101','都市逆襲',80],['替身新娘的反擊','豪門',72],['夜市女王','台味',60],['總裁的冒牌秘書','甜寵',90],['七日倒數','懸疑',48],['基隆港的雨','年代',66]];
@@ -399,7 +489,7 @@ function poster(b,i,d){const c=b.colors;const pal=(b.posterPal||[])[i%6]||[[c.pr
   return `<div class="poster" style="background:linear-gradient(170deg,${pal[0]} 0%,${pal[1]} 85%)"><div style="position:absolute;inset:0;background:radial-gradient(circle at ${30+i*9}% ${25+i*5}%,rgba(255,255,255,.28),transparent 45%)"></div><span class="tag" style="background:${c.paper};color:${c.ink}">${d[1]}</span><div class="pt" style="font-family:${b.fZh}">${d[0]}</div><div class="pe">全 ${d[2]} 集</div></div>`}
 function secSite(b){const c=b.colors;const dark=b.siteDark!==undefined?b.siteDark:b.id!=='C';
   const bg=dark?c.ink:c.paper, fg=dark?c.paper:c.ink;
-  const hero=b.id==='A'?`好戲<br><span style="background:linear-gradient(90deg,${c.accent},${c.primary});-webkit-background-clip:text;background-clip:text;color:transparent">一集上癮</span>`:b.id==='B'?`好戲<br>一<span style="color:${c.primary}">浪</span>接一<span style="color:${c.primary}">浪</span>`:b.id==='C'?`線上首映<br>每集 90 秒的<br><span style="color:${c.primary}">好戲</span>`:b.id==='D'?`<span style="color:${c.secondary}">「</span>好戲<span style="color:${c.secondary}">」</span><br>從一句<span style="color:${c.primary}">台詞</span>開始`:false?`<span style="background:linear-gradient(90deg,${c.secondary},${c.primary});-webkit-background-clip:text;background-clip:text;color:transparent">浪尖</span>`:`${esc(b.tagline)}`;
+  const hero=b.heroHTML?b.heroHTML(c):b.id==='A'?`好戲<br><span style="background:linear-gradient(90deg,${c.accent},${c.primary});-webkit-background-clip:text;background-clip:text;color:transparent">一集上癮</span>`:b.id==='B'?`好戲<br>一<span style="color:${c.primary}">浪</span>接一<span style="color:${c.primary}">浪</span>`:b.id==='C'?`線上首映<br>每集 90 秒的<br><span style="color:${c.primary}">好戲</span>`:b.id==='D'?`<span style="color:${c.secondary}">「</span>好戲<span style="color:${c.secondary}">」</span><br>從一句<span style="color:${c.primary}">台詞</span>開始`:false?`<span style="background:linear-gradient(90deg,${c.secondary},${c.primary});-webkit-background-clip:text;background-clip:text;color:transparent">浪尖</span>`:`${esc(b.tagline)}`;
   return `<section class="blk"><div class="wrap">${H('06','官網','官網分兩半：前半給觀眾（B2C 下載導流），後半給製作方與版權方（B2B 合作）。後半就是合資公司對外說明「平台＋製作」雙引擎的地方。')}
   <div class="browser"><div class="bar"><i></i><i></i><i></i><div class="url">https://langdrama.tw</div></div>
   <div class="site" style="background:${bg};color:${fg}">
@@ -423,21 +513,21 @@ function secSite(b){const c=b.colors;const dark=b.siteDark!==undefined?b.siteDar
 
 /* ---------- overview ---------- */
 function overview(){
-  const ids=['A','B','C','D'];
-  const T=(a,b,c,d)=>x=>({A:a,B:b,C:c,D:d})[x.id];
+  const ids=['A','B','C','D','E','F','G','H'];
+  const T=(a,b,c,d,e,f,g,h)=>x=>({A:a,B:b,C:c,D:d,E:e,F:f,G:g,H:h})[x.id];
   const rows=[
-   ['概念',T('L（Lang）尾端收成浪＋▶，玻璃質感','▶ 豎屏外框＋綢帶（浪 / 布幕）','膠卷齒孔三點水＋▶，承襲浪LIVE 墨藍＋紅','繁中引號「」框出豎屏，框中浪LIVE 紅三角 ▶')],
-   ['40px 以下辨識',T('<span class="pill p0">弱</span> 玻璃邊緣會跟背景融在一起','<span class="pill p1">中</span> 外框細線在 29px 會斷','<span class="pill ok">強</span> 全實心幾何，24px 仍清楚','<span class="pill p1">中</span> 三筆結構清楚，但線寬約 4%，29px 需加粗')],
-   ['商店貨架反差',T('<span class="pill ok">強</span> 飽和度最高，但配色像社群 App','<span class="pill p0">弱</span> 白底在淺色模式沒有邊界','<span class="pill p1">中</span> 淺底，靠墨藍實心 ▶ 撐住邊界','<span class="pill p1">中</span> 淺底容易被忽略，但「」造型在短劇 icon 裡獨一無二')],
-   ['與浪LIVE 關聯',T('娛樂調性最接近直播；L 只在英文名成立','關聯弱，偏影音工具調性','<span class="pill ok">強</span> 同結構、同色號，一看就是浪LIVE 家族','<span class="pill ok">強</span> 紅三角直接取自浪LIVE logo，同色號')],
-   ['B2B 份量（版權方 / 製作方）',T('<span class="pill p1">中</span> 偏消費娛樂','<span class="pill p1">中</span> 乾淨但缺個性','<span class="pill ok">強</span> 電影感、跟母集團一致','<span class="pill ok">強</span> 極簡、文字感，適合跟編劇和製作方溝通')],
-   ['CIS 落地（單色 / 印刷 / 向量）',T('<span class="pill p0">缺</span> 只有點陣，需重繪向量','<span class="pill ok">好</span> 扁平向量，直接可用','<span class="pill ok">好</span> 純幾何','<span class="pill ok">好</span> 三筆線條')],
-   ['動態延伸（片頭 sting / 動態 icon）',T('流光掃過 L、▶ 彈出；要 3D 或 AE 製作','綢帶飄動穿過外框，1.2 秒','三格齒孔像膠卷由上往下捲過，▶ 推出，1.2 秒','兩個角從畫面外合攏成豎屏，紅三角彈出開演，1.0 秒；可以直接當每集片頭')],
-   ['製作成本',T('高：向量重繪＋多套降級版','低','低：純幾何，沿用浪LIVE 色號','最低：三筆線條')],
+   ['概念',T('L（Lang）尾端收成浪＋▶，玻璃質感','▶ 豎屏外框＋綢帶（浪 / 布幕）','膠卷齒孔三點水＋▶，承襲浪LIVE 墨藍＋紅','繁中引號「」框出豎屏，框中浪LIVE 紅三角 ▶','場記板雙斜紋＋9:16 豎屏＋雙色 ▶','雙 9:16 錯位畫格＋負空間 S 浪＋白圓 ▶','連續雙浪＝W，螢光綠＋夜海綠','對開布幕兩片實心形，中央留白入口')],
+   ['40px 以下辨識',T('<span class="pill p0">弱</span> 玻璃邊緣會跟背景融在一起','<span class="pill p1">中</span> 外框細線在 29px 會斷','<span class="pill ok">強</span> 全實心幾何，24px 仍清楚','<span class="pill p1">中</span> 三筆結構清楚，但線寬約 4%，29px 需加粗','<span class="pill ok">強</span> 有 24px 簡化規則；40px 只剩斜紋＋▶','<span class="pill p1">中</span> 五層元素，40px 浪紋只剩細縫','<span class="pill ok">強</span> 單一實心形；24px 波谷縫隙偏窄','<span class="pill ok">強</span> 兩塊形狀，最簡單')],
+   ['商店貨架反差',T('<span class="pill ok">強</span> 飽和度最高，但配色像社群 App','<span class="pill p0">弱</span> 白底在淺色模式沒有邊界','<span class="pill p1">中</span> 淺底，靠墨藍實心 ▶ 撐住邊界','<span class="pill p1">中</span> 淺底容易被忽略，但「」造型在短劇 icon 裡獨一無二','<span class="pill p1">中</span> 夠亮，但黑金紅是短劇主流配色','<span class="pill ok">強</span> 冷暖撞色，在暖色貨架裡突出','<span class="pill ok">強</span> 短劇 App 沒人用螢光綠','<span class="pill p1">中</span> 暖色系，小尺寸像暫停鍵')],
+   ['與浪LIVE 關聯',T('娛樂調性最接近直播；L 只在英文名成立','關聯弱，偏影音工具調性','<span class="pill ok">強</span> 同結構、同色號，一看就是浪LIVE 家族','<span class="pill ok">強</span> 紅三角直接取自浪LIVE logo，同色號','只有緋紅接近浪紅，關聯弱','<span class="pill p1">中</span> 想延續墨藍＋浪紅，但青色先讓人想到 TikTok','<span class="pill p0">弱</span> 只剩 2% 連結紅','<span class="pill p0">弱</span> 只靠名字')],
+   ['B2B 份量（版權方 / 製作方）',T('<span class="pill p1">中</span> 偏消費娛樂','<span class="pill p1">中</span> 乾淨但缺個性','<span class="pill ok">強</span> 電影感、跟母集團一致','<span class="pill ok">強</span> 極簡、文字感，適合跟編劇和製作方溝通','<span class="pill p1">中</span> 片場感有，但偏娛樂','<span class="pill p1">中</span> 偏科技平台','<span class="pill p1">中</span> 偏科技產品','<span class="pill ok">強</span> 宋體＋暖色，作品感最重')],
+   ['CIS 落地（單色 / 印刷 / 向量）',T('<span class="pill p0">缺</span> 只有點陣，需重繪向量','<span class="pill ok">好</span> 扁平向量，直接可用','<span class="pill ok">好</span> 純幾何','<span class="pill ok">好</span> 三筆線條','<span class="pill ok">好</span> 全向量，可燙金','<span class="pill p1">中</span> 疊色和負空間在單色版會變平','<span class="pill p1">中</span> 向量好用，但螢光綠要專色','<span class="pill ok">好</span> 雙色印刷即可')],
+   ['動態延伸（片頭 sting / 動態 icon）',T('流光掃過 L、▶ 彈出；要 3D 或 AE 製作','綢帶飄動穿過外框，1.2 秒','三格齒孔像膠卷由上往下捲過，▶ 推出，1.2 秒','兩個角從畫面外合攏成豎屏，紅三角彈出開演，1.0 秒；可以直接當每集片頭','打板斜紋落下，▶ 亮起，0.8 秒','下層畫格往上滑、浪接上，1.0 秒；動態感最好','雙浪由左向右展開，1.2 秒','兩片布幕往外拉開，1.4 秒；片頭感最強')],
+   ['製作成本',T('高：向量重繪＋多套降級版','低','低：純幾何，沿用浪LIVE 色號','最低：三筆線條','低：純幾何','中：直式模切名片單價高','中：螢光專色','低')],
   ];
   return `<div class="wrap"><div class="hero" style="grid-template-columns:1fr"><div>
-    <span class="who">總覽 · OVERVIEW</span><h1>四案比稿</h1>
-    <p class="concept">浪創數位（浪LIVE × 影視製作公司合資）做台灣在地豎屏短劇平台。四案共用同一套 CIS 模板：Logo 系統、色彩、字體、禁止事項、名片、官網。點 icon 進各案細節。</p></div></div>
+    <span class="who">總覽 · OVERVIEW</span><h1>八案比稿</h1>
+    <p class="concept">浪創數位（浪LIVE × 影視製作公司合資）做台灣在地豎屏短劇平台。A/B 是設計師提案，C/D 是 Claude 提案，E/F 是 Gemini 提案，G/H 是 ChatGPT 提案。八案共用同一套 CIS 模板：Logo 系統、色彩、字體、禁止事項、名片、官網。點 icon 進各案細節。</p></div></div>
   <div class="ov-icons">${ids.map(k=>{const b=brands[k];return `<button type="button" data-go="${k}"><div class="ic">${icon(b)}</div><b>${esc(b.label)}</b><small>${b.author}提案</small></button>`}).join('')}</div></div>
   <section class="blk"><div class="wrap">${H('N','App 命名提案','公司名「浪創數位」對 B2B，App 名對 C 端，兩者分開。')}
    <div class="tbl"><table><thead><tr><th>候選</th><th>英文</th><th>理由</th><th>風險</th><th>建議</th></tr></thead><tbody>
@@ -447,14 +537,18 @@ function overview(){
     <tr><td>劇浪</td><td class="mono">DramaWave</td><td>—</td><td>市場上已有同名短劇 App，撞名</td><td><span class="pill p0">排除</span></td></tr>
    </tbody></table></div>
   </div></section>
-  <section class="blk"><div class="wrap">${H('M','評估矩陣','四案用同一套標準評。')}
-   <div class="tbl"><table><thead><tr><th>維度</th>${ids.map(k=>`<th>${esc(brands[k].label)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td>${ids.map(k=>`<td>${r[1](brands[k])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+  <section class="blk"><div class="wrap">${H('M','評估矩陣','八案用同一套標準評。E–H 的評分是 Claude 重新評的，沒有沿用 Gemini、ChatGPT 原稿的自評。')}
+   <div class="tbl"><table style="min-width:1180px"><thead><tr><th>維度</th>${ids.map(k=>`<th>${esc(brands[k].label)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td>${ids.map(k=>`<td>${r[1](brands[k])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
   </div></section>
   <section class="blk"><div class="wrap">${H('R','Claude 的建議')}
    <div class="grid2">
     <div class="note"><b>建議：雙層品牌，不硬選一案</b><ul>
      <li><b>公司層（浪創數位）用 C 的系統。</b>改版後直接沿用浪LIVE 的結構和色號，母子品牌關係一看就懂。膠卷齒孔再把影視合資方的身分帶進來，對版權方和投資人都說得通。</li>
      <li><b>App icon 進商店 A/B test：A（補完向量版後）對 D。</b>這兩案是兩個極端：A 最吵、情緒最滿，D 最安靜、在地辨識最強。D 的極簡在白色商店頁可能吃虧，測試時要加一版墨字黑底的 D。短劇靠投廣告拉用戶，CPI 取決於 icon 能不能讓人停下來，交給數據決定。</li>
+     <li><b>E 可以取代 A 進商店測試。</b>E 是 A 的全向量版，同樣的高能量，不用等設計師重繪。但它是場記板，跟你淘汰 R5 的理由一樣；如果團隊也覺得場記板太常見，就還是 A 補向量版。</li>
+     <li><b>F 的概念最好，但要先改色再進決選。</b>「上滑」是六案裡最貼近產品的想法。只是青＋紅錯位會聯想到 TikTok，把青色換成浪LIVE 墨藍，就變成浪LIVE 家族的一員，也可以考慮當公司和 App 共用的單一識別。</li>
+     <li><b>G 是貨架上最跳的一案，但 W 形撞 Webflow。</b>螢光綠在短劇 App 裡獨一無二，可以借它的配色思路；造型要先做相似性檢索再決定。</li>
+     <li><b>H 不建議當 App icon，但很適合當片頭和公司簡報的框架。</b>縮小後兩條直立形會讀成暫停鍵。它的開幕動態和宋體作品感，可以給 C 案的公司層借用。</li>
      <li><b>B 不建議單獨進決選。</b>製作最省事，但白底和細線兩個問題都會直接傷到商店轉換。它的「綢帶＝浪＝布幕」概念可以併進 C，作為公司層的輔助圖形。</li>
      <li><b>C＋D 是一組品牌家族。</b>兩案都用浪LIVE 的紅三角 ▶ 和同一支浪紅專色：C 是公司層的「浪」字標，D 是 App 層的「」豎屏標。浪LIVE、浪創、浪劇三層一看就是同一家。</li><li>兩層用同一個字體系統（Noto）串起來，避免變成兩家公司。</li>
     </ul></div>
@@ -469,7 +563,7 @@ function overview(){
   </div></section>`}
 
 /* ---------- render ---------- */
-const TABS=[['O','總覽'],['A','A 案'],['B','B 案'],['C','C 案'],['D','D 案']];
+const TABS=[['O','總覽'],['A','A 案'],['B','B 案'],['C','C 案'],['D','D 案'],['E','E 案'],['F','F 案'],['G','G 案'],['H','H 案']];
 let cur='O';
 function tabs(){$('#tabs').innerHTML=TABS.map(([k,l])=>`<button class="tab" role="tab" aria-selected="${k===cur}" data-tab="${k}"><span class="ti">${k==='O'?`<svg viewBox="0 0 24 24"><g fill="currentColor" opacity=".6"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></g></svg>`:icon(brands[k])}</span>${l}</button>`).join('')}
 function render(k){cur=k||cur;tabs();const m=$('#main');
@@ -485,6 +579,6 @@ function bind(){
     const r=$('#r-'+k);if(r)r.onclick=()=>{try{localStorage.removeItem('lcd-cis-'+k)}catch(e){}Object.assign(brands[k],{...brands[k].def,colors:{...brands[k].def.colors}});render(k)}});
 }
 loadUploads();
-const h=(location.hash||'').slice(1);render(['O','A','B','C','D'].includes(h)?h:'O');
+const h=(location.hash||'').slice(1);render(['O','A','B','C','D','E','F','G','H'].includes(h)?h:'O');
 })();
 </script>
